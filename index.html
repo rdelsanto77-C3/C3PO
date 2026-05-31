@@ -1693,7 +1693,7 @@ async function getReplyFromClaude(userText) {
     });
 
     const data = await response.json();
-    const reply = data.content?.[0]?.text || "Deixa eu verificar, só um minuto!";
+    const reply = (data.content&&data.content[0]?data.content[0].text:JSON.stringify(data)) || "Deixa eu verificar, só um minuto!";
     chatHistory.push({ role: "assistant", content: reply });
 
     // Keep history manageable (last 20 messages)
